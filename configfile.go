@@ -429,6 +429,9 @@ func (c *ConfigFile) GetRawString(section string, option string) (string, error)
 		if value, ok := c.data[section][option]; ok {
 			return value, nil
 		}
+		if value, ok := c.data[DefaultSection][option]; ok {
+			return value, nil
+		}
 
 		return "", errors.New(fmt.Sprintf("Option not found: %s", option))
 	}
